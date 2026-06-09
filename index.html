@@ -779,35 +779,37 @@
   });
 
   // Modern Form Gönderim Scripti (Mail kutuna anında düşer)
-  const form = document.getElementById('quoteForm');
+ const form = document.getElementById('quoteForm');
   form.addEventListener('submit', function(e) {
     e.preventDefault();
-    const formData = new FormData(form);
-    const object = Object.fromEntries(formData);
-    const json = JSON.stringify(object);
+    
+    const submitBtn = document.querySelector('.submit-btn');
+    submitBtn.innerHTML = "Gönderiliyor...";
+    submitBtn.disabled = true;
 
-    document.querySelector('.submit-btn').innerHTML = "Gönderiliyor...";
+    // Verileri JSON yerine doğrudan Web3Forms'un istediği form formatında paketliyoruz
+    const formData = new FormData(form);
 
     fetch('https://api.web3forms.com/submit', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: json
-        })
-        .then(async (response) => {
-            let res = await response.json();
-            if (response.status == 200) {
-                document.getElementById('formWrap').style.display = 'none';
-                document.getElementById('successWrap').style.display = 'block';
-            } else {
-                alert("Bir hata oluştu, lütfen info@vividambalaj.com adresinden iletişime geçin.");
-            }
-        })
-        .catch(error => {
-            alert("Sistemde anlık bir sorun oluştu. Lütfen doğrudan mail atın.");
-        });
+        method: 'POST',
+        body: formData
+    })
+    .then(async (response) => {
+        let res = await response.json();
+        if (response.status == 200 || res.success) {
+            document.getElementById('formWrap').style.display = 'none';
+            document.getElementById('successWrap').style.display = 'block';
+        } else {
+            alert("Bir hata oluştu: " + (res.message || "Lütfen ayarlarınızı kontrol edin."));
+            submitBtn.innerHTML = "Teklif Talebimi Gönder";
+            submitBtn.disabled = false;
+        }
+    })
+    .catch(error => {
+        alert("Sistemde anlık bir sorun oluştu. Lütfen doğrudan mail atın.");
+        submitBtn.innerHTML = "Teklif Talebimi Gönder";
+        submitBtn.disabled = false;
+    });
   });
 
   var revealEls = document.querySelectorAll('.reveal');
