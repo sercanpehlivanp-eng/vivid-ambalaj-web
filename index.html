@@ -229,6 +229,7 @@
   .sector p { font-size: 12px; color: var(--navy-200); margin-top: 2px; }
   .sector .s-line { display: block; width: 28px; height: 2px; margin-bottom: 10px; transition: width .3s; }
   .sector:hover .s-line { width: 56px; }
+  @media (max-width: 520px) { .sector { aspect-ratio: 1; } .sector p { display: none; } .sector .s-txt { left: 12px; right: 12px; bottom: 12px; } }
 
   /* ===== Ürünler ===== */
   .products { background: var(--navy-950); overflow: hidden; }
@@ -388,6 +389,44 @@
   .f-links svg { width: 16px; height: 16px; flex-shrink: 0; }
   .f-bottom { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--navy-800); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 12px; color: var(--navy-500); }
 
+  /* ===== Üretim filmi ===== */
+  .film { background: var(--navy-950); overflow: hidden; }
+  .film-wrap { position: relative; border-radius: 6px; overflow: hidden; border: 1px solid var(--navy-700); box-shadow: 0 40px 90px -30px rgba(0,0,0,.8); background: #000; aspect-ratio: 16/9; }
+  .film-wrap video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .film-wrap::before { content: ''; position: absolute; inset: -2px; z-index: -1; background: linear-gradient(90deg, var(--c), var(--m), var(--y)); filter: blur(30px); opacity: .25; }
+  .film-sound { position: absolute; right: 16px; bottom: 16px; z-index: 2; display: inline-flex; align-items: center; gap: 8px; background: rgba(10,15,28,.75); border: 1px solid rgba(255,255,255,.18); color: #fff; border-radius: 40px; padding: 8px 14px; font-family: var(--font-display); font-size: 12px; font-weight: 600; cursor: pointer; backdrop-filter: blur(6px); }
+  .film-sound svg { width: 14px; height: 14px; }
+  .film-meta { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 28px; }
+  @media (min-width: 768px) { .film-meta { grid-template-columns: repeat(4, 1fr); } }
+  .film-meta div { border-left: 2px solid var(--navy-600); padding: 4px 0 4px 14px; }
+  .film-meta b { display: block; font-family: var(--font-display); color: var(--navy-50); font-size: 15px; }
+  .film-meta span { font-size: 13px; color: var(--navy-400); }
+
+  /* ===== Kraft serisi ===== */
+  .kraft { background: linear-gradient(180deg, var(--navy-900), #141a24); overflow: hidden; }
+  .kraft-grid { display: grid; gap: 48px; align-items: center; }
+  @media (min-width: 1024px) { .kraft-grid { grid-template-columns: 1fr 1.15fr; } }
+  .kraft .kicker { color: #c8a06a; font-family: var(--font-display); font-size: 12px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
+  .kraft h2 { margin: 12px 0 18px; }
+  .kraft p.lead2 { color: var(--navy-200); margin-bottom: 26px; max-width: 520px; }
+  .kraft-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; }
+  .kraft-pills span { border: 1px solid rgba(200,160,106,.45); color: #e3c79c; background: rgba(200,160,106,.08); border-radius: 40px; padding: 6px 14px; font-size: 13px; font-family: var(--font-display); font-weight: 600; }
+  .kraft-mosaic { display: grid; grid-template-columns: 1.2fr 1fr; grid-template-rows: 1fr 1fr; gap: 14px; aspect-ratio: 1.15/1; }
+  .kraft-mosaic .k { position: relative; border-radius: 6px; overflow: hidden; border: 1px solid rgba(255,255,255,.08); cursor: zoom-in; }
+  .kraft-mosaic .k:first-child { grid-row: span 2; }
+  .kraft-mosaic img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s ease; }
+  .kraft-mosaic .k:hover img { transform: scale(1.06); }
+  .kraft-mosaic .k span { position: absolute; left: 12px; bottom: 12px; background: rgba(10,15,28,.8); color: #fff; font-family: var(--font-display); font-size: 12px; font-weight: 600; padding: 5px 10px; border-radius: 4px; backdrop-filter: blur(4px); }
+
+  /* ===== CTA bandı ===== */
+  .cta-band { position: relative; overflow: hidden; padding: 96px 0; text-align: center; }
+  .cta-band img.bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .cta-band::before { content: ''; position: absolute; inset: 0; z-index: 1; background: linear-gradient(90deg, rgba(10,15,28,.94), rgba(10,15,28,.78), rgba(10,15,28,.94)); }
+  .cta-band .container { position: relative; z-index: 2; }
+  .cta-band h2 { max-width: 760px; margin: 0 auto 14px; }
+  .cta-band p { color: var(--navy-200); max-width: 560px; margin: 0 auto 32px; }
+  .cta-band .acts { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+
   /* ===== WhatsApp & yukarı ===== */
   .wa-float { position: fixed; right: 20px; bottom: 20px; z-index: 60; width: 58px; height: 58px; border-radius: 50%; background: #25d366; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(37,211,102,.4); transition: transform .2s; }
   .wa-float:hover { transform: scale(1.08); }
@@ -418,7 +457,8 @@
     <ul class="nav-links" id="navLinks">
       <li><a href="#hakkimizda">Hakkımızda</a></li>
       <li><a href="#urunler">Ürünler</a></li>
-      <li><a href="#surec">Üretim</a></li>
+      <li><a href="#kraft">Kraft Seri</a></li>
+      <li><a href="#tesis">Üretim</a></li>
       <li><a href="#galeri">Galeri</a></li>
       <li><a href="#danismanlik">Danışmanlık</a></li>
       <li><a href="#sss">SSS</a></li>
@@ -436,7 +476,8 @@
     <ul>
       <li><a href="#hakkimizda">Hakkımızda</a></li>
       <li><a href="#urunler">Ürünler</a></li>
-      <li><a href="#surec">Üretim Süreci</a></li>
+      <li><a href="#kraft">Kraft Seri</a></li>
+      <li><a href="#tesis">Üretim &amp; Tesis</a></li>
       <li><a href="#galeri">Galeri</a></li>
       <li><a href="#danismanlik">Danışmanlık</a></li>
       <li><a href="#sss">Sık Sorulan Sorular</a></li>
@@ -485,7 +526,7 @@
     <div class="hero-visual" aria-hidden="true">
       <div class="hv-ring"></div>
       <div class="hv-card a"><img src="images/web/kozmetik-2-sm.webp" alt="" /></div>
-      <div class="hv-card b"><img src="images/web/burger-kutu-sm.webp" alt="" /></div>
+      <div class="hv-card b"><img src="images/web/kraft-burger-sm.webp" alt="" /></div>
       <div class="hv-card c"><img src="images/web/cikolata-lokum-sm.webp" alt="" /></div>
       <div class="hv-chip"><span class="sw"><i style="background:var(--c)"></i><i style="background:var(--m)"></i><i style="background:var(--y)"></i><i style="background:#111"></i></span>CMYK + Pantone</div>
     </div>
@@ -496,8 +537,8 @@
 <!-- ===== Marquee ===== -->
 <div class="marquee" aria-hidden="true">
   <div class="marquee-track">
-    <span>Ofset Baskı</span><span>Sıvamalı Kutu</span><span>Sıcak Folyo</span><span>Kabartma / Emboss</span><span>Spot UV Lak</span><span>Selefon</span><span>Asetat Pencere</span><span>Amerikan Bristol</span><span>Kraft Karton</span><span>E/B Flüt Oluklu</span>
-    <span>Ofset Baskı</span><span>Sıvamalı Kutu</span><span>Sıcak Folyo</span><span>Kabartma / Emboss</span><span>Spot UV Lak</span><span>Selefon</span><span>Asetat Pencere</span><span>Amerikan Bristol</span><span>Kraft Karton</span><span>E/B Flüt Oluklu</span>
+    <span>Ofset Baskı</span><span>Sıvamalı Kutu</span><span>Sıcak Folyo</span><span>Kabartma / Emboss</span><span>Spot UV Lak</span><span>Selefon</span><span>Asetat Pencere</span><span>Amerikan Bristol</span><span>Kraft Çanta</span><span>Kraft Karton</span><span>E/B Flüt Oluklu</span>
+    <span>Ofset Baskı</span><span>Sıvamalı Kutu</span><span>Sıcak Folyo</span><span>Kabartma / Emboss</span><span>Spot UV Lak</span><span>Selefon</span><span>Asetat Pencere</span><span>Amerikan Bristol</span><span>Kraft Çanta</span><span>Kraft Karton</span><span>E/B Flüt Oluklu</span>
   </div>
 </div>
 
@@ -598,12 +639,36 @@
       <p class="sub">Ürününüzün ihtiyacına göre doğru karton, doğru form ve doğru yüzey işlemi.</p>
     </div>
     <div class="sector-grid">
-      <a href="#galeri" data-goto="gida" class="sector reveal"><img src="images/web/burger-kutu-sm.webp" alt="Fast food burger kutuları" loading="lazy" /><div class="s-txt"><span class="s-line" style="background:var(--m)"></span><h3>Gıda &amp; Fast Food</h3><p>Burger, patates, dürüm, pizza</p></div></a>
+      <a href="#galeri" data-goto="gida" class="sector reveal"><img src="images/web/kraft-burger-sm.webp" alt="Kraft hamburger kutuları" loading="lazy" /><div class="s-txt"><span class="s-line" style="background:var(--m)"></span><h3>Gıda &amp; Fast Food</h3><p>Burger, patates, dürüm, pizza</p></div></a>
       <a href="#galeri" data-goto="gida" class="sector reveal"><img src="images/web/cikolata-lokum-sm.webp" alt="Çikolata ve lokum kutuları" loading="lazy" /><div class="s-txt"><span class="s-line" style="background:var(--accent-gold)"></span><h3>Pastane &amp; Şekerleme</h3><p>Çikolata, lokum, kurabiye, tatlı</p></div></a>
       <a href="#galeri" data-goto="kozmetik" class="sector reveal"><img src="images/web/kozmetik-3-sm.webp" alt="Kozmetik kutusu" loading="lazy" /><div class="s-txt"><span class="s-line" style="background:var(--c)"></span><h3>Kozmetik &amp; Kişisel Bakım</h3><p>Parfüm, krem, makyaj setleri</p></div></a>
       <a href="#galeri" data-goto="luks" class="sector reveal"><img src="images/web/luks-kutu-seti-sm.webp" alt="Lüks hediye kutuları" loading="lazy" /><div class="s-txt"><span class="s-line" style="background:var(--accent-gold)"></span><h3>Lüks &amp; Hediyelik</h3><p>Mıknatıslı, çekmeceli, sıvamalı</p></div></a>
       <a href="#galeri" data-goto="ozel" class="sector reveal"><img src="images/web/taslamali-kutu-sm.webp" alt="Tekstil ve ayakkabı kutuları" loading="lazy" /><div class="s-txt"><span class="s-line" style="background:var(--y)"></span><h3>Tekstil &amp; Ayakkabı</h3><p>Taslamalı, kapaklı kutular</p></div></a>
-      <a href="#galeri" data-goto="ozel" class="sector reveal"><img src="images/web/kraft-koli-sm.webp" alt="Kraft e-ticaret kutuları" loading="lazy" /><div class="s-txt"><span class="s-line" style="background:var(--brand)"></span><h3>E-Ticaret &amp; Endüstriyel</h3><p>Kraft, oluklu, gönderi kutuları</p></div></a>
+      <a href="#galeri" data-goto="kraft" class="sector reveal"><img src="images/web/kraft-canta-sm.webp" alt="Kraft kağıt çantalar" loading="lazy" /><div class="s-txt"><span class="s-line" style="background:#c8a06a"></span><h3>Perakende &amp; E-Ticaret</h3><p>Kraft çanta, gönderi kutuları</p></div></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Kraft Serisi ===== -->
+<section id="kraft" class="section kraft">
+  <div class="container">
+    <div class="kraft-grid">
+      <div class="reveal">
+        <span class="kicker">Yeni · Kraft &amp; Doğa Dostu Seri</span>
+        <h2 class="h2">Doğal Görünüm,<br />Güçlü Marka Etkisi</h2>
+        <p class="lead2">Geri dönüştürülebilir kraft kartondan hamburger kutuları, take-away setleri ve saplı kraft çantalar. Tek renk logo baskısından tam renkli ofset baskıya kadar markanıza uygun çözüm.</p>
+        <div class="kraft-pills"><span>Kraft Hamburger Kutusu</span><span>Kraft Çanta</span><span>Noodle &amp; Salata Kutusu</span><span>Patates Kutusu</span><span>Sandviç Kutusu</span></div>
+        <div style="display:flex;flex-wrap:wrap;gap:12px">
+          <a href="#iletisim" data-urun-set="Kraft Ambalaj (Hamburger / Take-Away / Çanta)" class="btn btn-primary btn-shimmer">Kraft Seri İçin Teklif Al
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          <a href="#galeri" data-goto="kraft" class="btn btn-outline">Kraft Galerisi</a>
+        </div>
+      </div>
+      <div class="kraft-mosaic reveal">
+        <div class="k" data-k><img src="images/web/kraft-takeaway.webp" alt="Kraft take-away ambalaj seti" loading="lazy" /><span>Kraft Take-Away Seti</span></div>
+        <div class="k" data-k><img src="images/web/kraft-burger-sm.webp" data-full="images/web/kraft-burger.webp" alt="Kraft hamburger kutuları" loading="lazy" /><span>Hamburger Kutusu</span></div>
+        <div class="k" data-k><img src="images/web/kraft-canta-sm.webp" data-full="images/web/kraft-canta.webp" alt="Saplı kraft kağıt çantalar" loading="lazy" /><span>Kraft Çanta</span></div>
+      </div>
     </div>
   </div>
 </section>
@@ -702,6 +767,69 @@
         </div>
       </div>
 
+      <div class="product reveal" data-urun="Kraft Hamburger Kutuları">
+        <div class="pimg" data-lb><img src="images/web/kraft-burger-sm.webp" data-full="images/web/kraft-burger.webp" alt="Kraft hamburger kutuları" loading="lazy" /><span class="badge" style="color:#c8a06a;border:1px solid #c8a06a">Kraft / Yeni</span></div>
+        <div class="pbody">
+          <h4>Kraft Hamburger Kutuları</h4>
+          <p>Doğal kraft görünümlü, kilitli kapaklı clamshell burger kutuları. Tek renk logo veya tam renkli baskı.</p>
+          <div class="ptags"><span class="ptag">Kilitli Kapak</span><span class="ptag">Kraft Karton</span></div>
+          <a href="#iletisim" class="plink">Teklif iste →</a>
+        </div>
+      </div>
+
+      <div class="product reveal" data-urun="Kraft Çantalar">
+        <div class="pimg" data-lb><img src="images/web/kraft-canta-sm.webp" data-full="images/web/kraft-canta.webp" alt="Saplı kraft kağıt çantalar" loading="lazy" /><span class="badge" style="color:#c8a06a;border:1px solid #c8a06a">Kraft / Yeni</span></div>
+        <div class="pbody">
+          <h4>Saplı Kraft Çantalar</h4>
+          <p>Mağaza, kafe ve paket servis için burgu saplı kraft kağıt çantalar. Farklı ölçülerde, logo baskılı.</p>
+          <div class="ptags"><span class="ptag">Burgu Sap</span><span class="ptag">Logo Baskı</span></div>
+          <a href="#iletisim" class="plink">Teklif iste →</a>
+        </div>
+      </div>
+
+      <div class="product reveal" data-urun="Kraft Take-Away Seti">
+        <div class="pimg" data-lb><img src="images/web/kraft-takeaway-sm.webp" data-full="images/web/kraft-takeaway.webp" alt="Kraft take-away seti" loading="lazy" /><span class="badge" style="color:#c8a06a;border:1px solid #c8a06a">Kraft / Yeni</span></div>
+        <div class="pbody">
+          <h4>Kraft Take-Away Seti</h4>
+          <p>Noodle kutusu, patates kutusu, salata kasesi ve sandviç kutusu; tüm seri tek marka diliyle.</p>
+          <div class="ptags"><span class="ptag">Noodle Kutusu</span><span class="ptag">Sandviç Kutusu</span></div>
+          <a href="#iletisim" class="plink">Teklif iste →</a>
+        </div>
+      </div>
+
+      <div class="product reveal" data-urun="Kraft E-Ticaret Kutuları">
+        <div class="pimg" data-lb><img src="images/web/kraft-koli-sm.webp" data-full="images/web/kraft-koli.webp" alt="Kraft e-ticaret kutuları" loading="lazy" /><span class="badge" style="color:var(--brand);border:1px solid var(--brand)">E-Ticaret</span></div>
+        <div class="pbody">
+          <h4>Kraft E-Ticaret Kutuları</h4>
+          <p>Gönderiye dayanıklı, kolay kurulan kraft kutular. İç ve dış baskı seçenekleriyle kutu açılış deneyimi.</p>
+          <div class="ptags"><span class="ptag">Kolay Kurulum</span><span class="ptag">İç Baskı</span></div>
+          <a href="#iletisim" class="plink">Teklif iste →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== Üretim Filmi ===== -->
+<section id="tesis" class="section film">
+  <div class="hero-grid" style="position:absolute;inset:0;opacity:.4"></div>
+  <div class="container" style="position:relative">
+    <div class="center-head reveal">
+      <div class="eyebrow center"><span class="bar"></span><span class="txt">Tesisimizden</span><span class="bar"></span></div>
+      <h2 class="h2">Baskıdan Sevkiyata Üretimimiz</h2>
+      <p class="sub">Ofset baskı, kesim, katlama-yapıştırma ve kalite kontrol aşamalarını kısa filmimizde izleyin.</p>
+    </div>
+    <div class="film-wrap reveal">
+      <video id="film" muted loop playsinline preload="none" poster="images/web/uretim-film-poster.webp" controls>
+        <source src="images/web/uretim-film.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <div class="film-meta reveal">
+      <div><b>Ofset Baskı</b><span>CMYK + Pantone, 5 renk + lak</span></div>
+      <div><b>Yüzey İşlemleri</b><span>Selefon, folyo, emboss, spot UV</span></div>
+      <div><b>Kesim &amp; Yapıştırma</b><span>Pencere, kilitli taban, katlama</span></div>
+      <div><b>Kontrol &amp; Sevkiyat</b><span>İzmir ve Türkiye geneli</span></div>
     </div>
   </div>
 </section>
@@ -745,6 +873,7 @@
       <button class="filter" data-f="kozmetik">Kozmetik</button>
       <button class="filter" data-f="gida">Gıda &amp; Take-Away</button>
       <button class="filter" data-f="luks">Lüks &amp; Rigid</button>
+      <button class="filter" data-f="kraft">Kraft &amp; Eko</button>
       <button class="filter" data-f="ozel">Özel Tasarım</button>
     </div>
     <div class="g-grid" id="gGrid">
@@ -763,7 +892,10 @@
       <div class="g-item" data-cat="ozel"><img src="images/web/taslamali-kutu-sm.webp" data-full="images/web/taslamali-kutu.webp" alt="Taslamalı kutular" loading="lazy" /><div class="g-cap">Taslamalı Kapaklı Kutular</div></div>
       <div class="g-item" data-cat="luks"><img src="images/web/rigid-kutu-sm.webp" data-full="images/web/rigid-kutu.webp" alt="Rigid kutu seti" loading="lazy" /><div class="g-cap">Rigid Kutu · Lacivert &amp; Beyaz</div></div>
       <div class="g-item" data-cat="ozel"><img src="images/web/ofset-seri-sm.webp" data-full="images/web/ofset-seri.webp" alt="Ofset baskılı kutu serisi" loading="lazy" /><div class="g-cap">Ofset Baskılı Kutu Serisi</div></div>
-      <div class="g-item" data-cat="ozel"><img src="images/web/kraft-koli-sm.webp" data-full="images/web/kraft-koli.webp" alt="Kraft kutular" loading="lazy" /><div class="g-cap">Kraft E-Ticaret Kutuları</div></div>
+      <div class="g-item" data-cat="kraft"><img src="images/web/kraft-koli-sm.webp" data-full="images/web/kraft-koli.webp" alt="Kraft kutular" loading="lazy" /><div class="g-cap">Kraft E-Ticaret Kutuları</div></div>
+      <div class="g-item wide" data-cat="kraft"><img src="images/web/kraft-takeaway.webp" alt="Kraft take-away seti" loading="lazy" /><div class="g-cap">Kraft Take-Away Seti</div></div>
+      <div class="g-item" data-cat="kraft"><img src="images/web/kraft-burger-sm.webp" data-full="images/web/kraft-burger.webp" alt="Kraft hamburger kutusu" loading="lazy" /><div class="g-cap">Kraft Hamburger Kutusu</div></div>
+      <div class="g-item" data-cat="kraft"><img src="images/web/kraft-canta-sm.webp" data-full="images/web/kraft-canta.webp" alt="Kraft çantalar" loading="lazy" /><div class="g-cap">Saplı Kraft Çantalar</div></div>
     </div>
   </div>
 </section>
@@ -834,6 +966,21 @@
   </div>
 </section>
 
+<!-- ===== CTA ===== -->
+<section class="cta-band">
+  <img class="bg" src="images/web/uretim-yapistirma.webp" alt="" loading="lazy" />
+  <div class="container reveal">
+    <div class="eyebrow center"><span class="bar gold"></span><span class="txt">Hemen Başlayalım</span><span class="bar gold"></span></div>
+    <h2 class="h2">Ürününüze en uygun ambalajı birlikte belirleyelim</h2>
+    <p>Ölçü, adet ve baskı detaylarını iletin; karton seçimi ve fiyat önerimizi size yazılı olarak sunalım.</p>
+    <div class="acts">
+      <a href="#iletisim" class="btn btn-primary btn-shimmer">Teklif Formu
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      <a href="https://wa.me/905524975326?text=Merhaba%2C%20ambalaj%20teklifi%20almak%20istiyorum." target="_blank" rel="noopener" class="btn btn-wa">WhatsApp'tan Yazın</a>
+    </div>
+  </div>
+</section>
+
 <!-- ===== İletişim ===== -->
 <section id="iletisim" class="section contact">
   <div class="hero-grid" style="position:absolute;inset:0;opacity:.4"></div>
@@ -898,6 +1045,7 @@
                     <option>Fast Food / Take-Away</option>
                     <option>Pastane / Saplı - Pencereli Kutu</option>
                     <option>Oluklu Pizza / Pide Kutusu</option>
+                    <option>Kraft Ambalaj (Hamburger / Take-Away / Çanta)</option>
                     <option>Kozmetik Kutusu</option>
                     <option>Tekstil / Ayakkabı Kutusu</option>
                     <option>Özel Tasarım / Diğer</option>
@@ -945,6 +1093,7 @@
         <div class="f-title">Kurumsal</div>
         <ul class="f-links">
           <li><a href="#hakkimizda">Hakkımızda</a></li>
+          <li><a href="#tesis">Üretim Filmi</a></li>
           <li><a href="#surec">Üretim Süreci</a></li>
           <li><a href="#danismanlik">Danışmanlık</a></li>
           <li><a href="#sss">SSS</a></li>
@@ -956,6 +1105,7 @@
           <li><a href="#urunler">Ofset Baskılı Kutular</a></li>
           <li><a href="#urunler">Lüks Sıvamalı Kutular</a></li>
           <li><a href="#urunler">Take-Away Ambalaj</a></li>
+          <li><a href="#kraft">Kraft &amp; Eko Seri</a></li>
           <li><a href="#galeri">Galeri</a></li>
         </ul>
       </div>
@@ -1039,10 +1189,11 @@
   function collect(scope) {
     var els = scope === 'g'
       ? Array.prototype.filter.call(gItems, function (it) { return !it.classList.contains('hide'); })
+      : scope === 'k' ? Array.prototype.slice.call(document.querySelectorAll('[data-k]'))
       : Array.prototype.slice.call(document.querySelectorAll('.product .pimg'));
     return els.map(function (el) {
       var img = el.querySelector('img');
-      var cap = el.querySelector('.g-cap');
+      var cap = el.querySelector('.g-cap') || el.querySelector(':scope > span');
       var title = cap ? cap.textContent : (el.closest('.product') ? el.closest('.product').querySelector('h4').textContent : img.alt);
       return { src: img.dataset.full || img.src, alt: img.alt, cap: title, el: el };
     });
@@ -1081,7 +1232,9 @@
     'Ofset Baskılı Kutular': 'Ofset Baskılı Kutu', 'Lüks Sıvamalı Kutular': 'Lüks / Sıvamalı Kutu',
     'Fast Food Take-Away': 'Fast Food / Take-Away', 'Saplı & Pencereli Kutular': 'Pastane / Saplı - Pencereli Kutu',
     'Bristol Karton Patates Kutuları': 'Fast Food / Take-Away', 'Taslamalı Kutular': 'Tekstil / Ayakkabı Kutusu',
-    'E/B Flüt Oluklu Take-Away': 'Oluklu Pizza / Pide Kutusu', 'Özel Tasarım Ambalajlar': 'Özel Tasarım / Diğer'
+    'E/B Flüt Oluklu Take-Away': 'Oluklu Pizza / Pide Kutusu', 'Özel Tasarım Ambalajlar': 'Özel Tasarım / Diğer',
+    'Kraft Hamburger Kutuları': 'Kraft Ambalaj (Hamburger / Take-Away / Çanta)', 'Kraft Çantalar': 'Kraft Ambalaj (Hamburger / Take-Away / Çanta)',
+    'Kraft Take-Away Seti': 'Kraft Ambalaj (Hamburger / Take-Away / Çanta)', 'Kraft E-Ticaret Kutuları': 'Özel Tasarım / Diğer'
   };
   document.querySelectorAll('.product .plink').forEach(function (a) {
     a.addEventListener('click', function () {
@@ -1089,6 +1242,24 @@
       if (urunMap[u]) document.getElementById('urun').value = urunMap[u];
     });
   });
+
+  document.querySelectorAll('[data-urun-set]').forEach(function (a) {
+    a.addEventListener('click', function () { document.getElementById('urun').value = a.dataset.urunSet; });
+  });
+
+  /* Kraft mozaik → lightbox */
+  document.querySelectorAll('[data-k]').forEach(function (k) { k.addEventListener('click', function () { openLb('k', k); }); });
+
+  /* Üretim filmi: görünür olunca sessiz oynat */
+  var film = document.getElementById('film');
+  if (film && 'IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (e.isIntersecting) { var pr = film.play(); if (pr && pr.catch) pr.catch(function () {}); }
+        else film.pause();
+      });
+    }, { threshold: 0.4 }).observe(film);
+  }
 
   /* Form gönderimi (Web3Forms) */
   var form = document.getElementById('quoteForm');
